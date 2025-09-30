@@ -7,6 +7,11 @@ Blits.Launch(App, 'app', {
   debugLevel: 1,
   fonts: [
     {
+      family: 'inter',
+      type: 'web',
+      file: 'fonts/Inter-Regular.ttf',
+    },
+    {
       family: 'lato',
       type: 'web',
       file: 'fonts/Lato-Regular.ttf',

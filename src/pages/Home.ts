@@ -1,15 +1,16 @@
 import Blits from '@lightningjs/blits'
 
 import Loader from '../components/Loader'
+import theme from '../lib/theme'
 
-const colors = ['#f5f3ff', '#ede9fe', '#ddd6fe', '#c4b5fd', '#a78bfa']
+const colors = theme.loaderColors
 
 export default Blits.Component('Home', {
   components: {
     Loader,
   },
   template: `
-    <Element w="1920" h="1080" color="#1e293b">
+    <Element w="1920" h="1080" :color="theme.colors.background">
       <Element :y.transition="$y">
         <Element
           src="assets/logo.png"
@@ -24,16 +25,17 @@ export default Blits.Component('Home', {
         />
         <Loader :x="1920 / 2" mount="{x: 0.5}" y="600" w="160" :alpha.transition="$loaderAlpha" :loaderColor="$color" />
         <Element y="600" :alpha.transition="$textAlpha">
-          <Text size="80" align="center" maxwidth="1920">Hello!</Text>
+          <Text :size="theme.typography.sizes.display" align="center" maxwidth="1920" :fontfamily="theme.typography.fontFamilyPrimary">Hello!</Text>
           <Text
-            size="50"
+            :size="theme.typography.sizes.heading"
             align="center"
             y="120"
             :x="1920/2"
             maxwidth="500"
-            lineheight="64"
+            :lineheight="theme.typography.lineHeights.heading"
             mount="{x: 0.5}"
-            color="#ffffffaa"
+            :color="theme.colors.textSecondary"
+            :fontfamily="theme.typography.fontFamilyPrimary"
             content="Let's get started with Lightning 3 & Blits"
           />
         </Element>
@@ -41,6 +43,7 @@ export default Blits.Component('Home', {
     </Element>`,
   state() {
     return {
+      theme,
       /**
        * Y-position of the entire page contents
        */
